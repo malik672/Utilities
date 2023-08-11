@@ -10,27 +10,38 @@ where
 }
 
 //add two  big numbers together
-pub fn add(&num1:BigUint, &num2:BigUint) -> result<BigUint> {
-   result = num1 + num2;
+pub fn add(num1: BigUint, num2: BigUint) -> Option<BigUint> {
+    Some( num1 + num2);
 }
 
-pub fn sub(&num1:BigUint, &num2:BigUint) -> result<BigUint> {
-    result = num1 - num2;
+pub fn sub(num1: BigUint, num2: BigUint) -> Option<BigUint> {
+    if num1 >= num2 {
+        Some(num1 - num2)
+    } else {
+        None
+    }
 }
 
-pub fn mul(&num1:BigUint, &num2:BigUint) -> result<BigUint> {
-    result = num1 * num2;
+pub fn mul(num1: BigUint, num2: BigUint) -> Option<BigUint> {
+    Some(num1 * num2);
 }
 
-pub fn div(&num1:BigUint, &num2:BigUint) -> result<BigUint> {
-    result = num1 / num2;
+pub fn div(num1: BigUint, num2: BigUint) -> Option<BigUint> {
+    if !num2.is_zero() {
+        Some(num1 / num2)
+    } else {
+        None
+    }
 }
 
-pub fn mods(&num1:BigUint, &num2:BigUint) -> result<BigUint> {
-    result = num1 * num2;
+pub fn mods(num1: BigUint, num2: BigUint) -> result<BigUint> {
+    if !num2.is_zero() {
+        Some(num1 % num2)
+    } else {
+        None
+    }
 }
 
-pub fn pow(&num1:BigUint, &num2:BigUint) -> result<BigUint> {
-    result = num1 * num2;
+pub fn pow(base: BigUint, exponent: BigUint) -> result<BigUint> {
+    result = base.pow(exponent);
 }
-
