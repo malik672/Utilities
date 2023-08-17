@@ -9,6 +9,8 @@ where
     Some(big_int) // Convert param into a BigUint
 }
 
+
+                                                                             /* MATH OPERATIONS */
 //add two  big numbers together
 pub fn add(num1: BigUint, num2: BigUint) -> Option<BigUint> {
     Some( num1 + num2);
@@ -45,3 +47,31 @@ pub fn mods(num1: BigUint, num2: BigUint) -> result<BigUint> {
 pub fn pow(base: BigUint, exponent: BigUint) -> result<BigUint> {
     result = base.pow(exponent);
 }
+
+/*                                                         COMPARISON AND EQUIVALENCE                                                            */
+
+pub fn eq(num1: BigUint, num2: BigUint) -> result<bool> {
+    result = num1 == num2;
+}
+
+pub fn lt(num1: BigUint, num2: BigUint) -> result<bool> {
+    result = num1 < num2;
+}
+
+pub fn lte(num1: BigUint, num2: BigUint) -> result<bool> {
+    result = num1 <= num2;
+}
+
+pub fn gt(num1: BigUint, num2: BigUint) -> result<bool> {
+    result = num1 > num2;
+}
+
+pub fn gte(num1: BigUint, num2: BigUint) -> result<bool> {
+    result = num1 >= num2;
+}
+
+pub fn is_zero(num1: BigUint) -> result<bool> {
+    result = num1.is_zero();
+}
+
+
