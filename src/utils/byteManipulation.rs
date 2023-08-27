@@ -20,3 +20,23 @@ pub fn array_to_hex_string(arr: &Vec<u8>)  -> result<String, Box<dyn std::error:
     let hex_string = encode(byte_vec);
     Ok(hex_string)
 }
+
+//object to hex
+pub fn obj_to_hex_string(obj: &serde_json::Value) -> String {
+    let values = obj.as_object();
+    match values {
+        Some(values) => {
+            let hex_strings:Vec<String> = values.map(|values| {
+              if let serde_json::Value::Number(num) = values{
+                format!("{:02x}", num.as_u64().unwrap())
+              }else {
+                String::new() // Handle other cases as needed
+              }
+            }).collect();
+            format!("0x{}", hex_strings.join(""))
+        },
+        None => println!("Value:{} type incorrect, it should be an object", values),
+    }
+    
+}
+
