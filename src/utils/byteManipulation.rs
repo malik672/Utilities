@@ -40,3 +40,11 @@ pub fn obj_to_hex_string(obj: &serde_json::Value) -> String {
     
 }
 
+//Array to hex
+pub fn arr_to_hex(arr: Number) -> String {
+  let hex_strings:Vec<String> = arr.map(|values| {
+    format!("{:02x}", num)
+  }).collect();
+
+  hex_strings.join("");
+}
