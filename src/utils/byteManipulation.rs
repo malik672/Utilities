@@ -49,6 +49,18 @@ pub fn arr_to_hex(arr: Number) -> String {
     hex_strings.join("");
 }
 
+//str to array
+pub fn str_to_array(sig: &str) -> Vec<usize> {
+    let mut result = Vec::new();
+
+    for c in input_string.chars() {
+        let code_point = c as usize;
+        result.push(code_point);
+    }
+
+    result
+}
+
 //Hexstring Manipulation
 
 //Concatenation - Concatenates all the BytesLike in arrayOfBytesLike into a single DataHexString
