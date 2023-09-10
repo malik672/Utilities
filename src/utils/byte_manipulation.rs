@@ -42,6 +42,26 @@ pub fn obj_to_hex_string(obj: &serde_json::Value) -> String {
     }
 }
 
+// string to uint 8 array
+pub fn arrayify(value: &str) -> Option<Vec<u8>> {
+    let value = if value.starts_with("0x") {
+        &value[2..]
+    } else {
+        value
+    };
+
+    if value.len() % 2 != 0 {
+        return None;
+    }
+
+    let bytes = hex::decode(value);
+
+    match bytes {
+        Ok(parsed_bytes) => Some(parsed_bytes),
+        Err(_) => None,
+    }
+}
+
 //Array to hex
 pub fn arr_to_hex(arr: Number) -> String {
     let hex_strings: Vec<String> = arr.map(|values| format!("{:02x}", num)).collect();
@@ -87,6 +107,8 @@ pub fn hex_data_slice(a_bytes_like: &str, start: usize, end: usize) -> Option<St
         None // Return None if indices are out of bounds
     }
 }
+
+
 
 //zeros strip - Returns a HexString representation of aBytesLike with all leading zeros removed.
 pub fn hex_strip_zeroes(a_bytes_like: &str) -> Option<String> {
